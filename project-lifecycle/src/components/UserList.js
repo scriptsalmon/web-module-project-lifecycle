@@ -11,12 +11,10 @@ class UserList extends React.Component {
         console.log("UserList: Renders");
         return (
             <div>
-                <h1>HELOOOOO</h1>
-                {
-                    this.props.userData.map(user => (
-                        <User key={user.id} user={user} />
-                    ))
-                }
+                <h1>HELLOOOOO</h1>
+                {this.props.userData.map(user => (
+                    <User key={user.id} user={user}/>
+                ))}
             </div> 
         )
     }

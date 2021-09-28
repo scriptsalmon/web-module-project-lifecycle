@@ -1,27 +1,21 @@
 import './App.css';
 import axios from 'axios';
-import React from 'react';
+import React, { Component } from 'react';
 import UserList from './components/UserList';
 
-class App extends React.Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     userData: []
-  //   }
-  // }
+class App extends Component {
   state = {
-    userData: []
+    userData: [],
+    data: [1, 2, "three", "four"]
   }
 
   componentDidMount() {
     console.log("App: Mounted");
     axios.get('https://api.github.com/users/scriptsalmon')
     .then(res => {
-      console.log(res);
       this.setState({
         ...this.state,
-        userData: res.data
+        userData: res
       })
     })
   }
@@ -34,7 +28,9 @@ class App extends React.Component {
       <header className="App-header">
         <a href="http://localhost:3000/">Home</a>
       </header>
-      <UserList userData={this.state.userData}/>
+      {
+        this.state.userData.length === 0 ? <div>Loading ...</div> : <UserList userData={this.state.userData} />
+      }
     </div>      
     )
   }
