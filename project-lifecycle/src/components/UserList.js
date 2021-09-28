@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
+import User from './User';
 
-class UserList extends Component {
+class UserList extends React.Component {
 
     componentDidMount() {
         console.log("UserList: Mounted");
@@ -11,6 +12,11 @@ class UserList extends Component {
         return (
             <div>
                 <h1>HELOOOOO</h1>
+                {
+                    this.props.userData.map(user => (
+                        <User key={user.id} user={user} />
+                    ))
+                }
             </div> 
         )
     }
