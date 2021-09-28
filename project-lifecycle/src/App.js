@@ -9,10 +9,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("App: Mounted");
+    // console.log("App: Mounted");
     axios.get('https://api.github.com/users/scriptsalmon')
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.setState({
         ...this.state,
         userData: [res.data]
@@ -22,15 +22,15 @@ class App extends Component {
 
 
   render() {
-    console.log("App: Renders");
+    // console.log("App: Renders");
     return (
     <div className="App">
       <header className="App-header">
         <a href="http://localhost:3000/">Home</a>
-      </header>
       {
         <UserList userData={this.state.userData} />
       }
+      </header>
     </div>      
     )
   }

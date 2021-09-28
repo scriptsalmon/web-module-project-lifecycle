@@ -1,16 +1,19 @@
 import React from 'react';
 import axios from 'axios';
+import UserDetails from './UserDetails';
 
 class User extends React.Component {
+    state = {
+        followerData: []
+    }
 
     componentDidMount() {
-        console.log("User: Mounted!")
         axios.get('https://api.github.com/users/scriptsalmon/followers')
         .then(res => {
-          console.log(res.data)
+        //   console.log("User: Axios get req ", res.data)
           this.setState({
             ...this.state,
-            userData: [res.data]
+            followerData: res.data
           })
         })
     }
@@ -22,7 +25,7 @@ class User extends React.Component {
                     <h1>{this.props.user.login}</h1>
                     <a>{this.props.user.bio}</a>
                 </header>
-
+                <UserDetails followerData={this.state.followerData} />
             </div>
         )
     }
