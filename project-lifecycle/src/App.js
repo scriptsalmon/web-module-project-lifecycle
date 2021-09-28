@@ -6,16 +6,16 @@ import UserList from './components/UserList';
 class App extends Component {
   state = {
     userData: [],
-    data: [1, 2, "three", "four"]
   }
 
   componentDidMount() {
     console.log("App: Mounted");
     axios.get('https://api.github.com/users/scriptsalmon')
     .then(res => {
+      console.log(res.data)
       this.setState({
         ...this.state,
-        userData: res
+        userData: [res.data]
       })
     })
   }
@@ -29,7 +29,7 @@ class App extends Component {
         <a href="http://localhost:3000/">Home</a>
       </header>
       {
-        this.state.userData.length === 0 ? <div>Loading ...</div> : <UserList userData={this.state.userData} />
+        <UserList userData={this.state.userData} />
       }
     </div>      
     )
