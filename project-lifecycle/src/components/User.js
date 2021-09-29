@@ -4,7 +4,8 @@ import UserDetails from './UserDetails';
 
 class User extends React.Component {
     state = {
-        followerData: []
+        followerData: [],
+        showFollowers: false
     }
 
     componentDidMount() {
@@ -18,6 +19,13 @@ class User extends React.Component {
         })
     }
 
+    handleClick = () => {
+        this.setState({
+            ...this.state,
+            showFollowers: !this.showFollowers
+        })
+    }
+
     render() {
         return (
             <div>
@@ -25,7 +33,10 @@ class User extends React.Component {
                     <h1>{this.props.user.login}</h1>
                     <a>{this.props.user.bio}</a>
                 </header>
-                <UserDetails followerData={this.state.followerData} />
+                <button onClick={this.handleClick}>Show Followers</button>
+                {
+                    this.state.showFollowers && <UserDetails followerData={this.state.followerData} />
+                }
             </div>
         )
     }
