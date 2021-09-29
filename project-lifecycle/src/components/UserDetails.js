@@ -2,8 +2,8 @@ import React from 'react';
 
 class UserDetails extends React.Component {
 
-    componentDidMount() {
-
+    handleClick = () => {
+        console.log("UserDetails: ")
     }
 
     render() {
@@ -12,7 +12,7 @@ class UserDetails extends React.Component {
             <>
                 {
                     this.props.followerData.map(follower => (
-                        <div key={follower.id} className="follower">{follower.login}</div>
+                        <div onClick={this.handleClick()} key={follower.id} className="follower">{follower.login}</div>
                     ))
                 }
             </>
